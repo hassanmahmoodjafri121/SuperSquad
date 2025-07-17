@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import HeroList from "./components/HeroList";
 import Squad from "./components/Squad";
 import heroes from "./data/heroes";
-import './index.css';
-
+import "./index.css";
 
 function App() {
   const [squad, setSquad] = useState([]);
 
   const addToSquad = (hero) => {
-    if (!squad.some((h) => h.id === hero.id)) {
+    if (!squad.find((h) => h.id === hero.id)) {
       setSquad([...squad, hero]);
     }
   };
@@ -19,18 +18,11 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h2>Available Heroes</h2>
+    <div className="app-container">
+      <h1>🦸‍♂️ SuperSquad</h1>
+      <div className="content">
         <HeroList heroes={heroes} addToSquad={addToSquad} />
-      </div>
-
-      <div className="card">
-        <h2>Super Squad (Ranked)</h2>
-        <Squad
-          squad={[...squad].sort((a, b) => b.rank - a.rank)}
-          removeFromSquad={removeFromSquad}
-        />
+        <Squad squad={squad} removeFromSquad={removeFromSquad} />
       </div>
     </div>
   );

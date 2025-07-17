@@ -1,26 +1,28 @@
 import React from "react";
+import "../index.css";
 
 const Squad = ({ squad, removeFromSquad }) => {
   return (
-    <div>
-      <h2>Super Squad</h2>
+    <div className="squad-section">
+      <h2>🛡️ Super Squad</h2>
       {squad.length === 0 ? (
         <p>No heroes in squad.</p>
       ) : (
-        <ul>
+        <div className="squad-list">
           {squad.map((hero) => (
-            <li key={hero.id} style={{ margin: "10px 0" }}>
-             <strong>{hero.name}</strong> (Rank: {hero.rank}) - {hero.power}
-
-              <button
-                onClick={() => removeFromSquad(hero.id)}
-                style={{ marginLeft: "10px" }}
-              >
-                Remove
-              </button>
-            </li>
+            <div className="hero-card" key={hero.id}>
+              <img
+                src={hero.image}
+                alt={hero.name}
+                className="hero-image"
+              />
+              <h3>{hero.name}</h3>
+              <p>Power: {hero.power}</p>
+              <p>Rank: {hero.rank}</p>
+              <button onClick={() => removeFromSquad(hero.id)}>Remove</button>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

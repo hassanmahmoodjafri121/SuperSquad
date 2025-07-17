@@ -1,22 +1,18 @@
-import React from "react";
+import React from 'react';
+import '../index.css';
 
 const HeroList = ({ heroes, addToSquad }) => {
   return (
-    <div>
-      <h2>Available Heroes</h2>
-      <ul>
-        {heroes.map((hero) => (
-          <li key={hero.id} style={{ margin: "10px 0" }}>
-            <strong>{hero.name}</strong> - {hero.power}
-            <button
-              onClick={() => addToSquad(hero)}
-              style={{ marginLeft: "10px" }}
-            >
-              Add to Squad
-            </button>
-          </li>
-        ))}
-      </ul>
+    <div className="hero-list-container">
+      {heroes.map((hero) => (
+        <div key={hero.id} className="hero-card">
+          <img src={hero.image} alt={hero.name} className="hero-image" />
+          <h3>{hero.name}</h3>
+          <p>{hero.power}</p>
+          <p>Rank: {hero.rank}</p>
+          <button onClick={() => addToSquad(hero)}>Add to Squad</button>
+        </div>
+      ))}
     </div>
   );
 };
